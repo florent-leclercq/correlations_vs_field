@@ -1,0 +1,6 @@
+.ipynb_checkpoints/
+__pycache__/
+figures/
+data/*sbi_*_samples_posterior.npz
+data/Sims*/
+pools_sbi/
