@@ -1,6 +1,6 @@
 # correlations_vs_field #
 
-[![arXiv](https://img.shields.io/badge/astro--ph.CO-arxiv%3A2103.xxxxx-B31B1B.svg?style=flat)](https://arxiv.org/abs/2103.xxxxx)
+[![arXiv](https://img.shields.io/badge/astro--ph.CO-arxiv%3A2103.04158-B31B1B.svg?style=flat)](https://arxiv.org/abs/2103.04158)
 [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/florent-leclercq/correlations_vs_field/blob/main/LICENSE)
 [![Website florent-leclercq.eu](https://img.shields.io/website-up-down-green-red/http/florent-leclercq.eu.svg)](http://florent-leclercq.eu/)
 
@@ -8,7 +8,7 @@ Correlation functions versus field-level inference in cosmology: example with lo
 
 ## Documentation ##
 
-This is a companion repository to Leclercq & Heavens 2021, *On the accuracy and precision of correlation functions and field-level inference in cosmology*, <a href="http://arxiv.org/pdf/2103.xxxxx" class="document" target="blank">arXiv:2103.xxxxx</a>.
+This is a companion repository to Leclercq & Heavens 2021, *On the accuracy and precision of correlation functions and field-level inference in cosmology*, <a href="http://arxiv.org/pdf/2103.04158" class="document" target="blank">arXiv:2103.04158</a>.
 
 The code contains a python library for log-normal fields, [libLN.py](libLN.py) and two example configuration files: [config_10.py](config_10.py) (alpha=1.0) and [config_02.py](config_02.py) (alpha=0.2). The main part of the code is split into several Jupyter notebooks:
 * [Inference_Summaries.ipynb](Inference_Summaries.ipynb): likelihood-based analysis of the two-point correlation functions (section 3 in Leclercq & Heavens 2021)
@@ -30,19 +30,27 @@ In addition to usual python packages such as numpy, scipy, matplotlib, pickle, c
 ## Reference ##
 
 
-To acknowledge the use of this software, please cite the paper <a href="http://arxiv.org/pdf/2103.xxxxx" class="document" target="blank">Leclercq & Heavens (2021)</a>: 
+To acknowledge the use of this software, please cite the paper <a href="http://arxiv.org/pdf/2103.04158" class="document" target="blank">Leclercq & Heavens (2021)</a>: 
 
 *On the accuracy and precision of correlation functions and field-level inference in cosmology*<br/>
 F. Leclercq, A. Heavens<br/>
-<a href="http://arxiv.org/abs/2103.xxxxx" target="blank">arXiv:2103.xxxxx</a> [<a href="http://arxiv.org/abs/2103.xxxxx" target="blank">astro-ph.CO</a>] [<a href="https://ui.adsabs.harvard.edu/?#abs/xxxxxxx" target="blank">ADS</a>] [<a href="http://arxiv.org/pdf/2103.xxxxx" class="document" target="blank">pdf</a>]
+<a href="http://arxiv.org/abs/2103.04158" target="blank">arXiv:2103.04158</a> [<a href="http://arxiv.org/abs/2103.04158" target="blank">astro-ph.CO</a>] [<a href="https://ui.adsabs.harvard.edu/?#abs/2021arXiv210304158L" target="blank">ADS</a>] [<a href="http://arxiv.org/pdf/2103.04158" class="document" target="blank">pdf</a>]
 
     @ARTICLE{correlations_vs_field,
         author = {{Leclercq}, Florent and {Heavens}, Alan},
         title = "{On the accuracy and precision of correlation functions and field-level inference in cosmology}",
-        eprint = {2103.xxxxx},
+        journal = {arXiv e-prints},
+        keywords = {Astrophysics - Cosmology and Nongalactic Astrophysics, Astrophysics - Instrumentation and Methods for Astrophysics, Statistics - Applications},
+        year = 2021,
+        month = mar,
+        eid = {arXiv:2103.04158},
+        pages = {arXiv:2103.04158},
+        archivePrefix = {arXiv},
+        eprint = {2103.04158},
+        primaryClass = {astro-ph.CO},
+        adsurl = {https://ui.adsabs.harvard.edu/abs/2021arXiv210304158L},
+        adsnote = {Provided by the SAO/NASA Astrophysics Data System}
         }
-
-
 
 ## License ##
 
