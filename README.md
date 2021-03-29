@@ -10,17 +10,33 @@ Correlation functions versus field-level inference in cosmology: example with lo
 
 This is a companion repository to Leclercq & Heavens 2021, *On the accuracy and precision of correlation functions and field-level inference in cosmology*, <a href="http://arxiv.org/pdf/2103.04158" class="document" target="blank">arXiv:2103.04158</a>.
 
-The code contains a python library for log-normal fields, [libLN.py](libLN.py) and two example configuration files: [config_10.py](config_10.py) (alpha=1.0) and [config_02.py](config_02.py) (alpha=0.2). The main part of the code is split into several Jupyter notebooks:
-* [Inference_Summaries.ipynb](Inference_Summaries.ipynb): likelihood-based analysis of the two-point correlation functions (section 3 in Leclercq & Heavens 2021)
-* [Inference_SBI.ipynb](Inference_SBI.ipynb): simulation-based inference using the two-point correlation functions (section 4 in Leclercq & Heavens 2021)
+### Main code: two-point correlation function versus field-level inference ###
+
+The code contains a python library for log-normal fields, [libLN.py](libLN.py) and two example configuration files: [config_10.py](config_10.py) (alpha=1.0, beta=0.5) and [config_02.py](config_02.py) (alpha=0.2, beta=0.5). The main part of the code is split into several Jupyter notebooks:
+* [Inference_Summaries.ipynb](Inference_Summaries.ipynb): likelihood-based analysis of the two-point correlation function (section 3 in Leclercq & Heavens 2021)
+* [Inference_SBI.ipynb](Inference_SBI.ipynb): simulation-based inference using the two-point correlation function (section 4 in Leclercq & Heavens 2021)
 * Inference_DA_*.ipynb: field-level inference with data assimilation (section 5 in Leclercq & Heavens 2021)
 * [Plots.ipynb](Plots.ipynb): code to produce the plots of the paper, and some more
 
 The raw data (pools of simulations for simulation-based inference and Markov Chains for data assimilation) are not stored in this repository due to their large size. They are available upon reasonable request to the corresponding author.
 
-In addition to usual python packages such as numpy, scipy, matplotlib, pickle, code has the following dependencies:
+In addition to usual python packages such as numpy, scipy, matplotlib, pickle, the code has the following dependencies:
 * [pydelfi](https://github.com/justinalsing/pydelfi) and [ELFI](https://github.com/elfi-dev/elfi) for simulation-based inference ([Inference_SBI.ipynb](Inference_SBI.ipynb))
 * [pymc3](https://docs.pymc.io) for data assimilation (Inference_DA_*.ipynb)
+
+### Simulation-based inference using cosmic web summaries ###
+
+In the current branch ([tweb](https://github.com/florent-leclercq/correlations_vs_field/tree/tweb)), the [libLN.py](libLN.py) library contains additional functions to compute summary statistics of log-normal fields based on the cosmic web:
+* the volume filling fractions of the three different structure types (clusters, filaments, and voids) defined using the 2D equivalent of the T-web procedure (see <a href="https://arxiv.org/abs/astro-ph/0610280" class="document" target="blank">Hahn <i>et al.</i> 2007</a>, <a href="https://arxiv.org/abs/1502.02690" class="document" target="blank">Leclercq <i>et al.</i> 2015</a>),
+* and the number counts of clusters and voids, as defined above.
+
+The code contains two additional notebooks:
+* [Inference_SBI_tweb.ipynb](Inference_SBI_tweb.ipynb): simulation-based inference using the cosmic web summaries defined above,
+* [Inference_SBI_combined.ipynb](Inference_SBI_combined.ipynb): joint simulation-based inference using the two-point correlation function and cosmic web summaries,
+
+and the notebook [Plots.ipynb](Plots.ipynb) additionally contains the code necessary to produce the figure below:
+
+![posterior_tweb](https://github.com/florent-leclercq/correlations_vs_field/blob/tweb/posterior_tweb.png?raw=true)
 
 ## Contributors ##
 
