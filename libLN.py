@@ -81,7 +81,70 @@ class LogNormalField:
         import numpy as np
         
         return (0.5*np.power(r,2)/np.power(beta,3)) * np.exp(-0.25*np.power(r/beta,2)) * np.exp(np.power(alpha,2)*np.exp(-0.25*np.power(r/beta,2)))
+    
+    @staticmethod
+    def get_shear_kernel(l,m,L0,L1,N0,N1,t):
+        def get_kmode(l,N,L):
+            from math import pi
+            return 2.*pi/L * (l-N) if l > N//2 else 2.*pi/L * l
+        
+        d0=L0/N0
+        d1=L1/N1
+        k0=get_kmode(l,N0,L0)
+        k1=get_kmode(m,N1,L1)
+        ksquared=k0*k0+k1*k1
+        if(t==0): kakb=k0*k0
+        elif(t==1): kakb=k1*k1
+        elif(t==2): kakb=k0*k1
+        return 0. if ksquared<=0. else kakb/ksquared
 
+    def shear_of_scalar(self,field,L0,L1,N0,N1):
+        import numpy as np
+        from scipy.fft import rfft2, irfft2
+        AUX=rfft2(field)
+        
+        kernel00=np.array([[self.get_shear_kernel(l,m,L0,L1,N0,N1,0) for l in range(N0)] for m in range(N1//2+1)]).T
+        kernel11=np.array([[self.get_shear_kernel(l,m,L0,L1,N0,N1,1) for l in range(N0)] for m in range(N1//2+1)]).T
+        kernel01=np.array([[self.get_shear_kernel(l,m,L0,L1,N0,N1,2) for l in range(N0)] for m in range(N1//2+1)]).T
+        
+        T00=irfft2(kernel00*AUX)
+        T11=irfft2(kernel11*AUX)
+        T01=irfft2(kernel01*AUX)
+        return T00, T11, T01
+
+    @staticmethod
+    def get_eigenvals_2D(T00,T11,T01):
+        from numpy import sqrt
+        lambda1=(T00+T11+sqrt((T00-T11)*(T00-T11)+4*T01*T01))/2.
+        lambda2=(T00+T11-sqrt((T00-T11)*(T00-T11)+4*T01*T01))/2.
+        return lambda1,lambda2
+
+    @staticmethod
+    def tweb_2D(lambda1,lambda2):
+        import numpy as np
+        res=np.zeros_like(lambda1)
+        res[np.where((lambda1>=0.)*(lambda2<0.))]=1.
+        res[np.where((lambda1>=0.)*(lambda2>=0.))]=2.
+        return res
+
+    @staticmethod
+    def vff(objects,N0,N1):
+        import numpy as np
+        c0=np.sum(objects==0.)
+        c1=np.sum(objects==1.)
+        c2=np.sum(objects==2.)
+        N=N0*N1
+        assert c0+c1+c2==N
+        return np.array([c0/N, c2/N])
+    
+    @staticmethod
+    def strcounts(objects):
+        import numpy as np
+        import scipy.ndimage as ndimage
+        label_voids, num_voids = ndimage.label(np.where(objects==0, 1, 0))
+        label_clusters, num_clusters = ndimage.label(np.where(objects==2, 1, 0))
+        return np.array([num_voids/100.,num_clusters/100.])
+    
     def __init__(self,Lside,rmax,nbin):
         """
         
@@ -227,6 +290,20 @@ class LogNormalField:
         corrfn = np.array([correlations[index==n].mean() for n in range(nbin) if len(correlations[index==n])>0])
         
         return corrfn
+    
+    def compute_tweb_stats(self,field):
+        """
+        Compute T-web summary statistics
+        """
+        import numpy as np
+        L0=1.
+        L1=1.
+        N0=self.Lside
+        N1=self.Lside
+        T00, T11, T01 = self.shear_of_scalar(field,L0,L1,N0,N1)
+        lambda1, lambda2 = self.get_eigenvals_2D(T00,T11,T01)
+        objects = self.tweb_2D(lambda1,lambda2)
+        return np.hstack([self.vff(objects,N0,N1),self.strcounts(objects)])
     
     def compute_corrfn_derivatives(self, field, field_alphap, field_alpham, field_betap, field_betam, step):
         """

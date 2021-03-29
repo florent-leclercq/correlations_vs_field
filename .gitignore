@@ -3,4 +3,4 @@ __pycache__/
 figures/
 data/*sbi_*_samples_posterior.npz
 data/Sims*/
-pools_sbi/
+pools_*/
