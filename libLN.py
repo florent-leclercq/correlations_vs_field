@@ -80,7 +80,7 @@ class LogNormalField:
     def dxi_LN_dbeta(r, beta, alpha, PixelNoise):
         import numpy as np
         
-        return (-0.5*r/np.power(beta,2)) * np.exp(-0.25*np.power(r/beta,2)) * np.exp(np.power(alpha,2)*np.exp(-0.25*np.power(r/beta,2)))
+        return (0.5*np.power(r,2)/np.power(beta,3)) * np.exp(-0.25*np.power(r/beta,2)) * np.exp(np.power(alpha,2)*np.exp(-0.25*np.power(r/beta,2)))
 
     def __init__(self,Lside,rmax,nbin):
         """
