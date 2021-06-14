@@ -27,7 +27,7 @@ betamax      = 0.8
 
 # Construct filenames for output files
 u = '_'
-extra = '0' if alpha<1 else ''    
+extra = '0' if alpha<1 else ''
 extraB = '0' if beta<1 else ''
 runid   = str(Lside)+u+extraB+str(np.rint(10*beta).astype(int))+u+extra+str(np.rint(10*alpha).astype(int))+u+ \
     str(nalpha)+u+str(nbeta)+u+str(nsims)+u+str(nbin)+u+str(np.rint(100*PixelNoise).astype(int))+u+str(seed)
@@ -43,4 +43,4 @@ print('Figures saved at',fileout)
 print('Simulations saved at',simsout)
 
 # Set contour levels for plots (from Numerical Recipes 15.6)
-contour_levels = [-9.21/2,-6.17/2,-4.61/2,-2.30/2,0]
+contour_levels = [-11.8/2,-6.17/2,-2.30/2,0]
