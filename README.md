@@ -11,9 +11,10 @@ Correlation functions versus field-level inference in cosmology: example with lo
 This is a companion repository to Leclercq & Heavens 2021, *On the accuracy and precision of correlation functions and field-level inference in cosmology*, <a href="http://arxiv.org/pdf/2103.04158" class="document" target="blank">arXiv:2103.04158</a>.
 
 The code contains a python library for log-normal fields, [libLN.py](libLN.py) and two example configuration files: [config_10.py](config_10.py) (alpha=1.0, beta=0.5) and [config_02.py](config_02.py) (alpha=0.2, beta=0.5). The main part of the code is split into several Jupyter notebooks:
-* [Inference_Summaries.ipynb](Inference_Summaries.ipynb): likelihood-based analysis of the two-point correlation function (section 3 in Leclercq & Heavens 2021)
+* [Inference_LBA.ipynb](Inference_LBA.ipynb): likelihood-based analysis of the two-point correlation function (section 3 in Leclercq & Heavens 2021)
 * [Inference_SBI.ipynb](Inference_SBI.ipynb): simulation-based inference using the two-point correlation function (section 4 in Leclercq & Heavens 2021)
 * Inference_DA_*.ipynb: field-level inference with data assimilation (section 5 in Leclercq & Heavens 2021)
+* [Fisher_forecasts.ipynb](Fisher_forecasts.ipynb): Fisher forecasts for the the two-point correlation function and field-level analyses (appendices E and F in Leclercq & Heavens 2021)
 * [Plots.ipynb](Plots.ipynb): code to produce the plots of the paper, and some more
 
 The raw data (pools of simulations for simulation-based inference and Markov Chains for data assimilation) are not stored in this repository due to their large size. They are available upon reasonable request to the corresponding author.
@@ -30,7 +31,7 @@ In addition to usual python packages such as numpy, scipy, matplotlib, pickle, t
 ## Reference ##
 
 
-To acknowledge the use of this software, please cite the paper <a href="http://arxiv.org/pdf/2103.04158" class="document" target="blank">Leclercq & Heavens (2021)</a>: 
+To acknowledge the use of this software, please cite the paper <a href="http://arxiv.org/pdf/2103.04158" class="document" target="blank">Leclercq & Heavens (2021)</a>:
 
 *On the accuracy and precision of correlation functions and field-level inference in cosmology*<br/>
 F. Leclercq, A. Heavens<br/>
